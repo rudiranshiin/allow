@@ -30,7 +30,8 @@ module Allow::Controller
   end
 
   def check_permission
-    user = supervisor_current_user || Allow::Guest.new
+    user = supervisor_current_user
+    p user
     resource_arg = supervisor_resource_obj || supervisor_resource_name.to_sym
     result = Allow::Supervisor.check_permission(user, params[:action].to_sym, resource_arg, params)
 
